@@ -140,6 +140,7 @@ section { padding-block: 72px; }
 }
 .card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(1,28,58,.08), 0 16px 36px rgba(1,28,58,.16); }
 .art { position: relative; aspect-ratio: 16 / 10; background: var(--navy); }
+.airport-art { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; }
 .art svg { display: block; width: 100%; height: 100%; }
 .badge {
   position: absolute; top: 12px; left: 12px; background: var(--orange); color: var(--navy);
@@ -701,13 +702,13 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
   var CATS = { day: "Day tour", wine: "Wine tour", multi: "Multi-day", transfer: "Transfer" };
 
   var TOURS = [
-    { id: "peninsula", cat: "day", scene: "mountain", photo: "cape-point-coast", name: "Cape Peninsula Day Tour", dur: "10 hours", grp: "Up to 12",
+    { id: "peninsula", cat: "day", scene: "mountain", photo: "cape-point-coast", name: "Cape Peninsula Day Tour", dur: "Full day: 8 hours / Half day: 4 hours", grp: "",
       blurb: "The classic loop from the city to the southern tip, with time at each stop.",
       hl: ["Table Mountain viewpoints and Hout Bay", "Boulders Beach penguin colony", "Cape Point and the Cape of Good Hope"],
       desc: ["A full day on the peninsula, from the city to the southern tip. The route follows the coast road with photo stops along the way and reaches Cape Point and the Cape of Good Hope.",
              "You also spend time at Boulders Beach, where African penguins nest on the beach and between the rocks. Your driver or guide sets the pace, so there is time to walk to the viewpoints and take photos at the signs at the Cape."],
       know: ["Wear layers. The wind at the Cape can be strong, even on a warm day.", "Baboons live along the peninsula. Keep food out of sight and do not feed them.", "Bring sun protection, water and comfortable walking shoes."],
-      pics: ["cape-point-coast", "cape-of-good-hope-sign", "cape-point-sign", "cape-point-viewpoint", "boulders-penguins", "penguins-pair", "penguins-pair-2", "boulders-welcome", "peninsula-coast", "noordhoek-lookout", "camps-bay", "baboon-baby-sitting", "beaded-birds-lookout"] },
+      pics: ["cape-point-coast", "cape-of-good-hope-sign", "cape-point-sign", "boulders-penguins", "penguins-pair", "penguins-pair-2", "boulders-welcome", "peninsula-coast", "noordhoek-lookout", "camps-bay", "baboon-baby-sitting", "beaded-birds-lookout"] },
     { id: "city", cat: "day", scene: "mountain", photo: "City Tour/WhatsApp Image 2026-11-12 at 22.17.20.jpeg", name: "Table Mountain & City Highlights", dur: "5 hours", grp: "Up to 12",
       blurb: "A scenic city day with Table Mountain, Bo-Kaap and the waterfront.",
       hl: ["Table Mountain viewpoints and cable car ride", "Bo-Kaap and the city centre", "V&A Waterfront and harbour views"],
@@ -715,7 +716,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
              "Depending on the weather, you may go up Table Mountain by cable car or enjoy a walking route to the viewpoints. The day is paced to suit the conditions and your group."],
       know: ["Table Mountain can close in strong wind or cloud. If that happens we adjust the route so you still get the best of the city and the coastline.", "Bring a light jacket. It is cooler and windier at the top."],
       pics: ["City Tour/WhatsApp Image 2026-11-12 at 22.17.20.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.19.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.18.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.17.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.16.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.15.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.14.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.13.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.16.37.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.13 (1).jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.15 (1).jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.16 (1).jpeg"] },
-    { id: "wine", cat: "wine", scene: "wine", photo: "valley-terrace-view", name: "Winelands Tasting Day", dur: "8 hours", grp: "Up to 10",
+    { id: "wine", cat: "wine", scene: "wine", photo: "valley-terrace-view", name: "Winelands Tasting Day", dur: "Full day: 8 hours / Half day: 4 hours", grp: "Up to 10",
       blurb: "Three estates across Stellenbosch and Franschhoek, with lunch time built in.",
       hl: ["Tastings at three wine estates", "Stellenbosch and Franschhoek villages", "Designated driver for the whole day"],
       desc: ["A relaxed day between vineyards and tasting rooms. You visit three estates across Stellenbosch and Franschhoek, with time for lunch and for a walk through the village streets.",
@@ -832,11 +833,12 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
     var html = "";
     TOURS.forEach(function (t, i) {
       if (current !== "all" && t.cat !== current) return;
-      var art = t.photo ? '<img src="' + assetPath(t.photo) + '" alt="' + t.name + '" loading="lazy">' : scene(t.scene, i);
-      html += '<article class="card"><div class="art">' + art +
+      var art = t.id === "airport" ? t.pics.map(function (p, j) { return '<img src="' + assetPath(p) + '" alt="Airport transfer vehicle ' + (j + 1) + '" loading="lazy">'; }).join("") :
+        t.photo ? '<img src="' + assetPath(t.photo) + '" alt="' + t.name + '" loading="lazy">' : scene(t.scene, i);
+      html += '<article class="card"><div class="art' + (t.id === "airport" ? " airport-art" : "") + '">' + art +
         (t.season ? '<span class="badge">Season: ' + t.season + '</span>' : '') + '</div>' +
         '<div class="card-body"><span class="cat">' + CATS[t.cat] + '</span><h3><button type="button" class="card-open" data-open="' + t.id + '">' + t.name + '</button></h3><p class="blurb">' + t.blurb + '</p>' +
-        '<div class="meta"><span>' + clock + t.dur + '</span><span>' + people + t.grp + '</span></div>' +
+        '<div class="meta"><span>' + clock + t.dur + '</span>' + (t.grp ? '<span>' + people + t.grp + '</span>' : '') + '</div>' +
         '<ul class="hl">' + t.hl.map(function (h) { return '<li>' + h + '</li>'; }).join("") + '</ul>' +
         '<div class="card-foot"><span class="more">View details and photos &rarr;</span>' +
         '<button class="btn small" type="button" data-tour="' + t.id + '">Enquire</button></div></div></article>';
@@ -1064,7 +1066,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
     var pics = t.pics || [], multi = pics.length > 1;
     document.getElementById("tmCat").textContent = CATS[t.cat];
     document.getElementById("tmTitle").textContent = t.name;
-    document.getElementById("tmMeta").innerHTML = '<span>' + clock + t.dur + '</span><span>' + people + t.grp + '</span>' + (t.season ? '<span>Season: ' + t.season + '</span>' : '');
+    document.getElementById("tmMeta").innerHTML = '<span>' + clock + t.dur + '</span>' + (t.grp ? '<span>' + people + t.grp + '</span>' : '') + (t.season ? '<span>Season: ' + t.season + '</span>' : '');
     document.getElementById("tmDesc").innerHTML = t.desc.map(function (p) { return '<p>' + p + '</p>'; }).join("");
     document.getElementById("tmHl").innerHTML = lis(t.hl);
     document.getElementById("tmKnow").innerHTML = lis(t.know);
