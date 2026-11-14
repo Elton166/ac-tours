@@ -1,0 +1,1134 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>AC Tours</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap">
+<style>
+/* Layout: sticky white header, navy hero with an arch window and an orange swoosh edge (taken from the logo's arc), then light sections on a soft blue-white ground, pill shaped controls echoing the TOURS badge. */
+:root {
+  --bg: #f3f7fd;
+  --surface: #ffffff;
+  --fg: #0a1a31;
+  --muted: #55657d;
+  --line: #d9e2f1;
+  --blue: #044ac3;
+  --blue-ink: #044ac3;
+  --navy: #011c3a;
+  --orange: #fe7e03;
+  --chip: #e6eefc;
+  --logo-bg: transparent;
+  --shadow: 0 1px 2px rgba(1,28,58,.06), 0 10px 28px rgba(1,28,58,.08);
+  --font-display: "Outfit", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #040e1c; --surface: #0a1d36; --fg: #e9f0fc; --muted: #9db0cc; --line: #1a3358;
+    --blue-ink: #7aa9ff; --chip: #102a4c; --logo-bg: #ffffff;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #040e1c; --surface: #0a1d36; --fg: #e9f0fc; --muted: #9db0cc; --line: #1a3358;
+  --blue-ink: #7aa9ff; --chip: #102a4c; --logo-bg: #ffffff;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  background: var(--surface); z-index: 60;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 8px; }
+
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.bar { display: flex; align-items: center; gap: 20px; padding-block: 10px; }
+.brand { display: flex; align-items: center; text-decoration: none; background: var(--logo-bg); border-radius: 12px; padding: 2px 6px; }
+.brand img { display: block; height: 52px; width: auto; max-width: none; }
+.nav { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+.nav a {
+  text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 14px; border-radius: 999px; color: var(--fg);
+}
+.nav a:hover { background: var(--chip); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .01em;
+  padding: 12px 22px; border-radius: 999px; text-decoration: none; cursor: pointer;
+  border: 3px solid var(--orange); background: var(--blue); color: #fff; transition: transform .15s ease, background .15s ease;
+}
+.btn:hover { transform: translateY(-1px); background: #0a5de8; }
+.btn.orange { background: var(--orange); color: var(--navy); border-color: var(--orange); }
+.btn.orange:hover { background: #ff9126; }
+.btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); }
+.btn.ghost:hover { background: rgba(255,255,255,.12); }
+.btn.small { padding: 8px 16px; font-size: 14px; border-width: 2px; }
+.nav .btn { color: #fff; margin-left: 6px; }
+.nav .btn:hover { background: #0a5de8; }
+.menu-btn {
+  display: none; margin-left: auto; width: 46px; height: 46px; border-radius: 999px;
+  border: 2px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer;
+  align-items: center; justify-content: center;
+}
+
+/* Hero: the logo sits on a white plate in the centre over a photo of the coast */
+.hero { position: relative; overflow: hidden; isolation: isolate; color: #fff; background: var(--navy); }
+.hero-bg { position: absolute; inset: 0; z-index: -1; }
+.hero-bg img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(1,28,58,.5) 0%, rgba(1,28,58,.74) 55%, rgba(1,28,58,.94) 100%); }
+.hero-center { display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: 48px 112px; }
+.logo-plate {
+  width: min(600px, 100%); background: #fff; border: 7px solid var(--orange); border-radius: 44px;
+  padding: clamp(20px, 4vw, 40px); box-shadow: 0 28px 70px rgba(0,0,0,.5);
+}
+.logo-plate img { display: block; width: min(100%, 460px); height: auto; margin: 0 auto; }
+.tag {
+  display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 12.5px;
+  letter-spacing: .14em; text-transform: uppercase; color: #fff; background: var(--blue);
+  border: 2px solid var(--orange); border-radius: 999px; padding: 6px 14px;
+}
+.hero h1 { font-size: clamp(1.9rem, 4.6vw, 3.2rem); font-weight: 800; margin-top: 34px; max-width: 20ch; }
+.hero h1 em { font-style: normal; color: var(--orange); }
+.hero .lead { margin-top: 16px; font-size: 1.1rem; color: #d3dff3; max-width: 54ch; }
+.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+.places { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; padding: 0; list-style: none; }
+.places li { font-size: 14px; font-weight: 500; color: #dbe6fa; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 5px 13px; background: rgba(1,28,58,.35); }
+.swoosh { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 64px; display: block; }
+
+/* Sections */
+section { padding-block: 72px; }
+.head { display: flex; flex-direction: column; gap: 14px; max-width: 62ch; margin-bottom: 32px; }
+.head h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 800; }
+.head p { color: var(--muted); font-size: 1.05rem; }
+.head .tag { align-self: flex-start; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.chip {
+  font-family: var(--font-body); font-weight: 600; font-size: 15px; cursor: pointer;
+  background: var(--surface); color: var(--fg); border: 2px solid var(--line); border-radius: 999px; padding: 8px 18px;
+}
+.chip:hover { border-color: var(--blue-ink); }
+.chip[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--orange); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
+  display: flex; flex-direction: column; box-shadow: var(--shadow); min-width: 0;
+  position: relative; transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(1,28,58,.08), 0 16px 36px rgba(1,28,58,.16); }
+.art { position: relative; aspect-ratio: 16 / 10; background: var(--navy); }
+.art svg { display: block; width: 100%; height: 100%; }
+.badge {
+  position: absolute; top: 12px; left: 12px; background: var(--orange); color: var(--navy);
+  font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 5px 11px; border-radius: 999px;
+}
+.card-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.cat { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-ink); }
+.card h3 { font-size: 1.35rem; font-weight: 700; }
+.card p.blurb { color: var(--muted); font-size: 15px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; font-weight: 600; }
+.meta span { display: inline-flex; align-items: center; gap: 6px; }
+.meta svg { width: 16px; height: 16px; stroke: var(--blue-ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hl { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14.5px; }
+.hl li { padding-left: 20px; position: relative; }
+.hl li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+.card-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.price small { display: block; font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.2; }
+.price b { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.note { margin-top: 22px; color: var(--muted); font-size: 14px; }
+
+.art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.arch img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+
+.card-open { all: unset; cursor: pointer; }
+.card-open::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.card-open:focus-visible::after { outline: 3px solid var(--orange); outline-offset: -3px; }
+.card-foot .btn { position: relative; z-index: 2; }
+.more { font-weight: 700; font-size: 14px; color: var(--blue-ink); }
+
+/* Tour details */
+.tm {
+  position: fixed; inset: 0; z-index: 70; background: rgba(1,12,28,.74); display: flex; align-items: center; justify-content: center;
+  padding: calc(20px + env(safe-area-inset-top, 0px)) calc(20px + env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) calc(20px + env(safe-area-inset-left, 0px));
+}
+.tm-sheet {
+  position: relative; width: min(1060px, 100%); height: min(720px, 100%); overflow: hidden; background: var(--surface); color: var(--fg);
+  border-radius: 30px; display: grid; grid-template-columns: 1.1fr .9fr; box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.tm-close {
+  position: absolute; z-index: 3; top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(14px + env(safe-area-inset-right, 0px));
+  width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--orange); background: var(--blue); color: #fff;
+  font-size: 28px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px;
+}
+.tm-close:hover { background: #0a5de8; }
+.tm-media { position: relative; background: var(--navy); display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.tm-stage { position: relative; flex: 1; min-height: 0; background: var(--navy); }
+.tm-stage img, .tm-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.tm-nav {
+  position: absolute; z-index: 2; top: calc(50% - 22px); width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff; background: rgba(1,28,58,.72); color: #fff;
+  font-size: 26px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px;
+}
+.tm-nav:hover { background: var(--blue); }
+.tm-prev { left: 12px; } .tm-next { right: 12px; }
+.tm-count {
+  position: absolute; z-index: 2; left: 12px; background: rgba(1,28,58,.8); color: #fff; font-size: 13px; font-weight: 700; padding: 4px 11px; border-radius: 999px;
+  font-variant-numeric: tabular-nums; top: 12px;
+}
+.tm-thumbs { position: relative; display: flex; gap: 8px; overflow-x: auto; padding: 10px 12px; background: var(--navy); scrollbar-width: thin; }
+.tm-thumbs button { flex: 0 0 auto; width: 76px; height: 56px; padding: 0; border: 3px solid transparent; border-radius: 12px; overflow: hidden; cursor: pointer; background: none; opacity: .7; }
+.tm-thumbs button[aria-current="true"] { border-color: var(--orange); opacity: 1; }
+.tm-thumbs img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tm-body { --tp: 30px; overflow: auto; overscroll-behavior: contain; padding: var(--tp); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.tm-body h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; padding-right: 56px; }
+.tm-body h3 { font-size: 1.05rem; font-weight: 700; margin-top: 6px; }
+.tm-desc { display: grid; gap: 10px; color: var(--muted); font-size: 16px; }
+.tm-foot {
+  position: sticky; bottom: 0; margin: auto calc(var(--tp) * -1) calc(var(--tp) * -1); padding: 14px var(--tp);
+  background: var(--surface); border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.tm-foot .btn { flex: 0 1 auto; }
+
+@media (max-width: 760px) {
+  .tm { padding: 0; align-items: stretch; }
+  .tm-sheet { width: 100%; height: 100%; border-radius: 0; display: block; overflow: auto; overscroll-behavior: contain; }
+  .tm-media { display: block; }
+  .tm-stage { flex: none; aspect-ratio: 4 / 3; max-height: 48vh; width: 100%; }
+  .tm-body { --tp: 20px; overflow: visible; }
+  .tm-foot { padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); margin-bottom: calc(var(--tp) * -1); }
+  .tm-foot .btn { flex: 1 1 140px; }
+}
+
+/* Gallery */
+.gallery { columns: 3 270px; column-gap: 16px; }
+.shot {
+  position: relative; display: block; width: 100%; margin: 0 0 16px; padding: 0; border: 0; border-radius: 20px; overflow: hidden;
+  background: var(--navy); cursor: zoom-in; break-inside: avoid; color: #fff; text-align: left; font: inherit;
+}
+.shot img { display: block; width: 100%; height: auto; transition: transform .35s ease; }
+.shot:hover img { transform: scale(1.03); }
+.shot span {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 14px 12px; font-size: 14px; font-weight: 600; line-height: 1.35;
+  background: linear-gradient(to top, rgba(1,28,58,.88), rgba(1,28,58,0));
+}
+.lb {
+  position: fixed; inset: 0; z-index: 80; background: rgba(1,12,28,.94); display: flex; align-items: center; justify-content: center;
+  padding: calc(64px + env(safe-area-inset-top, 0px)) calc(64px + env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) calc(64px + env(safe-area-inset-left, 0px));
+}
+.lb-fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; max-width: 100%; }
+.lb-fig img { display: block; max-width: 100%; max-height: calc(100vh - 190px); width: auto; height: auto; border-radius: 14px; }
+.lb-fig figcaption { color: #dbe6fa; font-size: 15px; text-align: center; max-width: 60ch; }
+.lb-btn {
+  position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--orange); background: var(--blue); color: #fff;
+  font-size: 28px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px;
+}
+.lb-btn:hover { background: #0a5de8; }
+.lb-close { top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); }
+.lb-prev { left: calc(10px + env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); }
+.lb-next { right: calc(10px + env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); }
+@media (max-width: 560px) {
+  .lb { padding-left: calc(12px + env(safe-area-inset-left, 0px)); padding-right: calc(12px + env(safe-area-inset-right, 0px)); }
+  .lb-prev, .lb-next { top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: none; }
+  .lb-prev { left: calc(16px + env(safe-area-inset-left, 0px)); }
+  .lb-next { right: calc(16px + env(safe-area-inset-right, 0px)); }
+  .lb-fig img { max-height: calc(100vh - 220px); }
+}
+
+.sub-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin: 40px 0 18px; }
+.videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+.clip { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.clip video { display: block; width: 100%; height: auto; background: var(--navy); border-radius: 20px; object-fit: cover; }
+.clip figcaption { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+.winelands { border-top: 1px solid var(--line); }
+
+/* Why */
+.why { background: var(--surface); border-block: 1px solid var(--line); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px; }
+.why-item { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ico { width: 52px; height: 52px; border-radius: 50%; background: var(--blue); border: 3px solid var(--orange); display: grid; place-items: center; }
+.ico svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.why-item h3 { font-size: 1.2rem; font-weight: 700; }
+.why-item p { color: var(--muted); font-size: 15px; }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; counter-reset: s; padding: 0; margin: 0; list-style: none; }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; min-width: 0; }
+.steps li::before {
+  content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--navy); color: var(--orange); font-family: var(--font-display); font-weight: 800; margin-bottom: 14px;
+}
+.steps h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+.steps p { color: var(--muted); font-size: 15px; }
+
+/* Enquire */
+.enquire { background: var(--navy); color: #fff; }
+.enq-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
+.enquire .head p { color: #c3d2ec; }
+.contact { display: grid; gap: 14px; margin-top: 8px; }
+.contact div { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border: 1px solid rgba(255,255,255,.2); border-radius: 18px; padding: 14px 16px; }
+.contact span.k { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); width: 74px; }
+.contact span.v { font-weight: 600; word-break: break-word; min-width: 0; flex: 1 1 140px; }
+.copy { font: inherit; font-size: 13px; font-weight: 600; background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.copy:hover { background: rgba(255,255,255,.12); }
+.form { background: var(--surface); color: var(--fg); border-radius: 26px; padding: 28px; display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-weight: 600; font-size: 14px; }
+.field input, .field select, .field textarea {
+  font: inherit; color: var(--fg); background: var(--bg); border: 2px solid var(--line); border-radius: 14px; padding: 11px 14px; width: 100%; min-width: 0;
+}
+.field textarea { resize: vertical; min-height: 92px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(254,126,3,.45); }
+#preview { font-size: 14px; min-height: 150px; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hint { font-size: 13.5px; color: var(--muted); }
+.form .btn.secondary { background: transparent; color: var(--blue-ink); border-color: var(--line); }
+.form .btn.secondary:hover { border-color: var(--blue-ink); background: var(--chip); }
+
+.contact a.v { color: #fff; text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.fab {
+  position: fixed; z-index: 55; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+  right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  background: var(--blue); color: #fff; border: 3px solid var(--orange); border-radius: 999px;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; padding: 11px 18px; box-shadow: 0 8px 24px rgba(1,28,58,.35);
+}
+.fab:hover { background: #0a5de8; }
+@media (max-width: 420px) { .fab span { display: none; } .fab { padding: 13px; } }
+
+.nav a:not(.btn)[aria-current="page"] { background: var(--chip); color: var(--blue-ink); }
+.quote-note { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+/* Page banners for Gallery, About and Contact us */
+.page-head { position: relative; overflow: hidden; background: var(--navy); color: #fff; padding-block: 52px 96px; }
+.page-head h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; margin-top: 16px; }
+.page-head p { margin-top: 12px; color: #d3dff3; font-size: 1.1rem; max-width: 56ch; }
+.gal-sec { padding-block: 36px 80px; }
+.cta-sec { padding-block: 40px 72px; }
+.cta-band {
+  background: var(--navy); color: #fff; border-radius: 30px; padding: 32px; display: flex; align-items: center;
+  justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cta-band h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; }
+.cta-band p { margin-top: 6px; color: #c3d2ec; }
+.about-sec { padding-block: 64px; }
+.about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.about-text { display: grid; gap: 16px; color: var(--muted); font-size: 1.05rem; min-width: 0; }
+.about-text h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; color: var(--fg); }
+.about-text .pull { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--blue-ink); border-left: 4px solid var(--orange); padding-left: 16px; }
+.about-text .sign { display: grid; gap: 2px; margin-top: 4px; }
+.about-text .sign b { font-family: var(--font-display); font-size: 1.3rem; color: var(--fg); }
+.ashley { margin: 0; display: grid; gap: 18px; position: relative; min-width: 0; align-self: start; }
+.ashley-main { position: relative; border-radius: 30px; box-shadow: 14px 14px 0 var(--orange), var(--shadow); aspect-ratio: 4 / 5; background: var(--navy); margin-right: 14px; }
+.ashley-main img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 30px; }
+.ashley-side { position: absolute; right: 0; top: 30%; width: 38%; aspect-ratio: 4 / 5; border-radius: 22px; border: 5px solid var(--bg); box-shadow: var(--shadow); overflow: hidden; background: var(--navy); }
+.ashley-side img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ashley-badge { margin: -62px 0 0 18px; position: relative; z-index: 2; justify-self: start; max-width: calc(100% - 36px); display: grid; gap: 2px; background: var(--navy); color: #fff; border: 3px solid var(--orange); border-radius: 18px; padding: 12px 18px; box-shadow: var(--shadow); }
+.ashley-badge b { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.1; }
+.ashley-badge span { font-size: 13px; font-weight: 600; color: #ffc98f; }
+.ashley-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 6px; }
+.ashley-stats div { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 12px 10px; text-align: center; display: grid; gap: 2px; min-width: 0; }
+.ashley-stats b { font-family: var(--font-display); font-size: 1.05rem; color: var(--blue-ink); overflow-wrap: anywhere; }
+.ashley-stats span { font-size: 12.5px; color: var(--muted); }
+.offer { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 26px; display: grid; gap: 16px; min-width: 0; }
+.offer h3 { font-size: 1.3rem; font-weight: 800; }
+.offer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px 24px; }
+.offer li { position: relative; padding-left: 22px; display: grid; gap: 2px; }
+.offer li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 9px; height: 9px; border-radius: 50%; background: var(--orange); }
+.offer li b { font-family: var(--font-display); font-size: 1.1rem; }
+.offer li span { color: var(--muted); font-size: 15px; }
+
+/* Contact page sits on the light background */
+.contact-sec { padding-block: 24px 80px; }
+.contact div { background: var(--surface); border-color: var(--line); }
+.contact span.k { color: var(--blue-ink); }
+.contact a.v { color: var(--fg); }
+.copy { color: var(--fg); border-color: var(--line); }
+.copy:hover { background: var(--chip); }
+.contact-qr { display: flex; align-items: center; gap: 18px; margin-top: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--fg); text-decoration: none; }
+.contact-qr:hover { border-color: var(--blue-ink); }
+.contact-qr .qr-code { display: block; flex: 0 0 132px; width: 132px; height: 132px; padding: 6px; background: #fff; }
+.contact-qr svg { display: block; width: 100%; height: 100%; shape-rendering: crispEdges; }
+.contact-qr b, .contact-qr small { display: block; }
+.contact-qr small { margin-top: 4px; color: var(--muted); overflow-wrap: anywhere; }
+.form { box-shadow: var(--shadow); border: 1px solid var(--line); }
+
+/* Footer */
+footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14px; }
+.foot { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
+.foot .brand img { height: 44px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: #fff; text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .hero-center { padding-block: 32px 92px; }
+  .enq-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .ashley-stats div { padding: 12px 6px; }
+  .ashley-stats b { font-size: .92rem; overflow-wrap: normal; }
+  .ashley { max-width: 460px; width: 100%; margin-inline: auto; }
+  .menu-btn { display: inline-flex; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--surface); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 12px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px 14px; }
+  .nav .btn { margin: 8px 0 0; }
+}
+@media (max-width: 560px) {
+  section { padding-block: 52px; }
+  .logo-plate { border-width: 5px; border-radius: 32px; }
+  .page-head { padding-block: 40px 84px; }
+  .about-sec { padding-block: 44px; }
+  .cta-band { padding: 24px; }
+  .hero h1 { margin-top: 26px; }
+  .form { grid-template-columns: 1fr; padding: 20px; }
+  .brand img { height: 46px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+</style>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#home" data-go="home" aria-label="AC Tours home"><img src="img/ac-logo.png" alt="AC Tours" width="520" height="403"></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#tours" data-go="tours">Tours</a>
+      <a href="#gallery" data-go="gallery">Gallery</a>
+      <a href="#about" data-go="about">About</a>
+      <a class="btn small" href="#contact" data-go="contact">Contact us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="view" id="view-home">
+  <div class="hero">
+    <div class="hero-bg" aria-hidden="true"><img src="img/camps-bay.jpg" alt="" fetchpriority="high"></div>
+    <div class="wrap hero-center">
+      <div class="logo-plate"><img src="img/ac-logo.png" alt="AC Tours" width="880" height="682" fetchpriority="high"></div>
+      <h1>South Africa, planned <em>end to end.</em></h1>
+      <p class="lead">Day tours, multi-day journeys and airport transfers with local drivers and guides. Tell us where you want to go and we organise the rest.</p>
+      <div class="hero-cta">
+        <a class="btn orange" href="#tours" data-go="tours">Browse tours</a>
+        <a class="btn ghost" href="#contact" data-go="contact">Get a quote</a>
+      </div>
+      <ul class="places" aria-label="Where we go">
+        <li>Cape Peninsula</li><li>Winelands</li><li>Hermanus</li><li>Township Tour</li><li>Safari</li>
+      </ul>
+    </div>
+    <svg class="swoosh" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 64 L0 40 Q720 -28 1440 40 L1440 64Z" fill="var(--bg)"/>
+      <path d="M0 40 Q720 -28 1440 40" fill="none" stroke="#fe7e03" stroke-width="6" vector-effect="non-scaling-stroke"/>
+    </svg>
+  </div>
+
+  <section id="tours">
+    <div class="wrap">
+      <div class="head">
+        <span class="tag">Our tours</span>
+        <h2>Pick a tour, or ask for something of your own</h2>
+        <p>All tours are arranged privately, tailored to your dates, interests and pickup location. Tap a tour to see the description and pictures, then contact us for a quote based on your plans.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter tours"></div>
+      <div class="grid" id="grid"></div>
+      <p class="note">We confirm the full cost, inclusions and pickup time in your quote.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="head">
+        <span class="tag">How it works</span>
+        <h2>From first message to the open road</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Tell us your plan</h3><p>Choose a tour or describe your trip: dates, number of travellers and where you are staying.</p></li>
+        <li><h3>Get your quote</h3><p>We reply with a price, the route and the pickup time, and adjust it until it suits you.</p></li>
+        <li><h3>Travel</h3><p>Your driver or guide meets you at the agreed time. You enjoy the day, we handle the rest.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cta-sec">
+    <div class="wrap">
+      <div class="cta-band">
+        <div><h2>Not sure which tour is right?</h2><p>Tell us what you have in mind and we suggest a plan.</p></div>
+        <a class="btn orange" href="#contact" data-go="contact">Contact us</a>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="view" id="view-gallery" hidden>
+    <div class="page-head">
+      <div class="wrap">
+        <span class="tag">Gallery</span>
+        <h1>Gallery</h1>
+        <p>Pictures and clips from our tours on the Cape Peninsula and in the Winelands. Tap a picture to enlarge it.</p>
+      </div>
+      <svg class="swoosh" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 64 L0 40 Q720 -28 1440 40 L1440 64Z" fill="var(--bg)"/>
+        <path d="M0 40 Q720 -28 1440 40" fill="none" stroke="#fe7e03" stroke-width="6" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <section class="gal-sec">
+      <div class="wrap">
+        <div class="filters" id="gFilters" role="group" aria-label="Filter the gallery"></div>
+        <div class="gallery" id="gallery-grid"></div>
+        <div class="videos" id="videos" hidden></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="view" id="view-about" hidden>
+    <div class="page-head">
+      <div class="wrap">
+        <span class="tag">About us</span>
+        <h1>About AC Tours</h1>
+        <p>Meet Ashley, your local Cape Town tour guide.</p>
+      </div>
+      <svg class="swoosh" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 64 L0 40 Q720 -28 1440 40 L1440 64Z" fill="var(--bg)"/>
+        <path d="M0 40 Q720 -28 1440 40" fill="none" stroke="#fe7e03" stroke-width="6" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <section class="about-sec">
+      <div class="wrap about-grid">
+        <figure class="ashley" aria-label="Ashley, your local Cape Town tour guide">
+          <div class="ashley-main"><img src="img/ashley-portrait.jpg" width="580" height="725" alt="Ashley, your local tour guide, in a Cape Point cap and white polo shirt"></div>
+          <div class="ashley-side"><img src="img/ashley-cape-point.jpg" width="600" height="750" alt="Ashley standing at the Cape Point sign"></div>
+          <figcaption class="ashley-badge"><b>Ashley</b><span>Your Local Cape Town Tour Guide</span></figcaption>
+          <div class="ashley-stats"><div><b>20+</b><span>years in tourism</span></div><div><b>Since 2005</b><span>guiding visitors</span></div><div><b>Registered</b><span>Local Guide</span></div></div>
+        </figure>
+        <div class="about-text">
+          <h2>Welcome</h2>
+          <p>My name is Ashley, and I am a passionate local tour guide based in beautiful Cape Town, South Africa.</p>
+          <p>I have been proudly involved in the tourism industry since 2005, bringing over 20 years of experience, knowledge and passion to every journey. As a registered Local Guide for the past two years, I take great pride in sharing the beauty, history, culture and hidden gems of Cape Town with visitors from around the world.</p>
+          <p>My goal is to offer more than just a sightseeing tour. I want every guest to experience the true spirit of Cape Town through its incredible landscapes, rich heritage, diverse cultures, fascinating history and warm hospitality.</p>
+          <p>Whether exploring the Cape Peninsula, discovering the Cape Winelands, experiencing local township culture, enjoying a city tour or heading out on a safari adventure, I always aim to make every trip comfortable, memorable and special.</p>
+          <p>I believe that every guest deserves personal attention, friendly service and an unforgettable experience.</p>
+          <p>All tours are done privately, so each trip feels personal, relaxed and tailored to your pace, interests and travel style.</p>
+          <p class="pull">With Ashley as your guide, you don&rsquo;t just visit Cape Town &ndash; you experience it!</p>
+          <p>I look forward to welcoming you to our beautiful Mother City.</p>
+          <p class="sign"><b>Ashley</b><span>Your Local Cape Town Tour Guide</span></p>
+        </div>
+        <div class="offer">
+          <h3>What we offer</h3>
+          <ul>
+            <li><b>Cape Peninsula</b><span>Cape Point, the Cape of Good Hope and Boulders Beach</span></li>
+            <li><b>Cape Winelands</b><span>Tasting days across Stellenbosch and Franschhoek</span></li>
+            <li><b>Township culture</b><span>A guided walk with local stories and art</span></li>
+            <li><b>City tours</b><span>Cape Town and Table Mountain</span></li>
+            <li><b>Safari adventures</b><span>Multi-day trips with comfortable transport</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="why">
+      <div class="wrap">
+        <div class="head">
+          <span class="tag">Why AC Tours</span>
+          <h2>Travel that runs on time and stays simple</h2>
+        </div>
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <h3>Local knowledge</h3>
+            <p>Routes, timing and stops chosen by people who know the roads, the weather and the quiet times at each place.</p>
+          </div>
+          <div class="why-item">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 13l2-6h14l2 6"/><path d="M3 13h18v5H3z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg></div>
+            <h3>Pickup from your stay</h3>
+            <p>We collect you from the location where you are staying, whether that is a hotel, guesthouse, villa or apartment, and bring you back at the end of the day.</p>
+          </div>
+          <div class="why-item">
+            <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M15.5 14c2.8 0 5 1.8 5 4.5"/></svg></div>
+            <h3>Private tours</h3>
+            <p>Every trip is arranged privately and tailored to your group, whether you are travelling as a couple, family or friends.</p>
+          </div>
+          <div class="why-item">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h14v16l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 9h6M9 13h6"/></svg></div>
+            <h3>One clear quote</h3>
+            <p>You get a written price with what is included before anything is booked, so there are no surprises on the day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta-sec">
+      <div class="wrap">
+        <div class="cta-band">
+          <div><h2>Ready to plan your trip?</h2><p>Send us your dates and we reply with a quote.</p></div>
+          <a class="btn orange" href="#contact" data-go="contact">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="view" id="view-contact" hidden>
+    <div class="page-head">
+      <div class="wrap">
+        <span class="tag">Get in touch</span>
+        <h1>Contact us</h1>
+        <p>Call, message us on WhatsApp or send an enquiry. We reply with a quote and a suggested plan.</p>
+      </div>
+      <svg class="swoosh" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 64 L0 40 Q720 -28 1440 40 L1440 64Z" fill="var(--bg)"/>
+        <path d="M0 40 Q720 -28 1440 40" fill="none" stroke="#fe7e03" stroke-width="6" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <section class="contact-sec" id="enquire">
+      <div class="wrap enq-grid">
+        <div>
+          <div class="contact">
+            <div><span class="k">Call</span><a class="v" id="cPhone" href="#contact"></a><button class="copy" type="button" data-copy="phone">Copy</button></div>
+            <div><span class="k">WhatsApp</span><a class="v" id="cWa" href="#contact" target="_blank" rel="noopener noreferrer"></a><button class="copy" type="button" data-copy="wa">Copy</button></div>
+            <div><span class="k">Email</span><a class="v" id="cEmail" href="#contact"></a></div>
+            <div><span class="k">Google</span><a class="v" id="cGoogle" href="#contact" target="_blank" rel="noopener noreferrer">Find AC Tours on Google</a></div>
+            <div><span class="k">TikTok</span><a class="v" id="cTiktok" href="#contact" target="_blank" rel="noopener noreferrer">@actours25</a></div>
+          </div>
+          <a class="contact-qr" id="emailQrLink" href="mailto:actours25@gmail.com">
+            <span class="qr-code" id="emailQr"></span>
+            <span><b>Scan to email AC Tours</b><small>actours25@gmail.com</small></span>
+          </a>
+        </div>
+        <form class="form" id="form" autocomplete="off" novalidate>
+          <div class="field"><label for="fName">Your name</label><input id="fName" type="text" placeholder="Full name"></div>
+          <div class="field"><label for="fTour">Tour</label><select id="fTour"></select></div>
+          <div class="field"><label for="fDate">Travel date</label><input id="fDate" type="date"></div>
+          <div class="field"><label for="fPax">Travellers</label><input id="fPax" type="number" min="1" max="60" value="2"></div>
+          <div class="field full"><label for="fMsg">Anything we should know</label><textarea id="fMsg" placeholder="Where you are staying, pickup time, children, special requests"></textarea></div>
+          <div class="field full"><label for="preview">Your enquiry</label><textarea id="preview" readonly></textarea></div>
+          <div class="full actions">
+            <a class="btn orange" id="waBtn" href="#contact" target="_blank" rel="noopener noreferrer">Send on WhatsApp</a>
+            <button class="btn secondary" id="copyEnq" type="button">Copy enquiry</button>
+            <span class="hint" id="copyNote" role="status"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="tm" id="tm" hidden role="dialog" aria-modal="true" aria-labelledby="tmTitle">
+  <button class="tm-close" id="tmClose" type="button" aria-label="Close tour details">&times;</button>
+  <div class="tm-sheet" id="tmSheet">
+    <div class="tm-media">
+      <div class="tm-stage" id="tmStage"></div>
+      <span class="tm-count" id="tmCount"></span>
+      <button class="tm-nav tm-prev" id="tmPrev" type="button" aria-label="Previous picture">&#8249;</button>
+      <button class="tm-nav tm-next" id="tmNext" type="button" aria-label="Next picture">&#8250;</button>
+      <div class="tm-thumbs" id="tmThumbs"></div>
+    </div>
+    <div class="tm-body" id="tmBody">
+      <span class="cat" id="tmCat"></span>
+      <h2 id="tmTitle"></h2>
+      <div class="meta" id="tmMeta"></div>
+      <div class="tm-desc" id="tmDesc"></div>
+      <h3>Highlights</h3>
+      <ul class="hl" id="tmHl"></ul>
+      <h3>Good to know</h3>
+      <ul class="hl" id="tmKnow"></ul>
+      <div class="tm-foot">
+        <span class="quote-note">Contact us for a quote</span>
+        <button class="btn orange" id="tmEnq" type="button">Enquire about this tour</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+  <figure class="lb-fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+</div>
+
+<a class="fab" id="fab" href="#enquire" target="_blank" rel="noopener noreferrer" aria-label="Chat with AC Tours on WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c.3 2.6 2.9 5.2 5.5 5.5l1.2-1.4-2-1-.9.7c-.8-.4-1.5-1.1-1.9-1.9l.7-.9-1-2z"/></svg>
+  <span>WhatsApp us</span>
+</a>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#home" data-go="home" aria-label="AC Tours home"><img src="img/ac-logo.png" alt="AC Tours" width="520" height="403"></a>
+    <nav aria-label="Footer"><a href="#home" data-go="home">Home</a><a href="#tours" data-go="tours">Tours</a><a href="#gallery" data-go="gallery">Gallery</a><a href="#about" data-go="about">About</a><a href="#contact" data-go="contact">Contact us</a><a id="fCall" href="#contact">Call 073 555 4271</a><a id="fWa" href="#contact" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="fEmail" href="mailto:actours25@gmail.com">Email</a><a id="fGoogle" href="#contact" target="_blank" rel="noopener noreferrer">Google</a><a id="fTiktok" href="#contact" target="_blank" rel="noopener noreferrer">TikTok</a></nav>
+    <span>&copy; 2026 AC Tours. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Edit these details to match the business.
+  var CFG = {
+    phone: "073 555 4271",
+    tel: "+27735554271",
+    wa: "27735554271",
+    waDisplay: "073 555 4271",
+    email: "actours25@gmail.com",
+    google: "https://share.google/5lIcQb6XwAWUZPZDP",
+    tiktok: "https://www.tiktok.com/@actours25"
+  };
+
+  var CATS = { day: "Day tour", wine: "Wine tour", multi: "Multi-day", transfer: "Transfer" };
+
+  var TOURS = [
+    { id: "peninsula", cat: "day", scene: "mountain", photo: "cape-point-coast", name: "Cape Peninsula Day Tour", dur: "8 hours", grp: "Up to 12",
+      blurb: "The classic loop from the city to the southern tip, with time at each stop.",
+      hl: ["Table Mountain viewpoints and Hout Bay", "Boulders Beach penguin colony", "Cape Point and the Cape of Good Hope"],
+      desc: ["A full day on the peninsula, from the city to the southern tip. The route follows the coast road with photo stops along the way and reaches Cape Point and the Cape of Good Hope.",
+             "You also spend time at Boulders Beach, where African penguins nest on the beach and between the rocks. Your driver or guide sets the pace, so there is time to walk to the viewpoints and take photos at the signs at the Cape."],
+      know: ["Wear layers. The wind at the Cape can be strong, even on a warm day.", "Baboons live along the peninsula. Keep food out of sight and do not feed them.", "Bring sun protection, water and comfortable walking shoes."],
+      pics: ["cape-point-coast", "cape-of-good-hope-sign", "cape-point-sign", "cape-point-viewpoint", "boulders-penguins", "penguins-pair", "penguins-pair-2", "boulders-welcome", "peninsula-coast", "noordhoek-lookout", "camps-bay", "baboon-baby-sitting", "beaded-birds-lookout"] },
+    { id: "city", cat: "day", scene: "mountain", photo: "City Tour/WhatsApp Image 2026-11-12 at 22.17.20.jpeg", name: "Table Mountain & City Highlights", dur: "5 hours", grp: "Up to 12",
+      blurb: "A scenic city day with Table Mountain, Bo-Kaap and the waterfront.",
+      hl: ["Table Mountain viewpoints and cable car ride", "Bo-Kaap and the city centre", "V&A Waterfront and harbour views"],
+      desc: ["A shorter day built around Cape Town’s most iconic sights. You start with the mountain views, then explore the Bo-Kaap, the city centre and the V&A Waterfront.",
+             "Depending on the weather, you may go up Table Mountain by cable car or enjoy a walking route to the viewpoints. The day is paced to suit the conditions and your group."],
+      know: ["Table Mountain can close in strong wind or cloud. If that happens we adjust the route so you still get the best of the city and the coastline.", "Bring a light jacket. It is cooler and windier at the top."],
+      pics: ["City Tour/WhatsApp Image 2026-11-12 at 22.17.20.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.19.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.18.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.17.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.16.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.15.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.14.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.13.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.16.37.jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.13 (1).jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.15 (1).jpeg", "City Tour/WhatsApp Image 2026-11-12 at 22.17.16 (1).jpeg"] },
+    { id: "wine", cat: "wine", scene: "wine", photo: "valley-terrace-view", name: "Winelands Tasting Day", dur: "8 hours", grp: "Up to 10",
+      blurb: "Three estates across Stellenbosch and Franschhoek, with lunch time built in.",
+      hl: ["Tastings at three wine estates", "Stellenbosch and Franschhoek villages", "Designated driver for the whole day"],
+      desc: ["A relaxed day between vineyards and tasting rooms. You visit three estates across Stellenbosch and Franschhoek, with time for lunch and for a walk through the village streets.",
+             "Tell us what you like, whether that is red, white, sparkling or food pairings, and we plan the estates around it. Your driver handles the roads, so everyone in the group can taste."],
+      know: ["Tell us if anyone in the group does not drink or has dietary needs, and we plan around it.", "Estates get busy at lunch time in summer. We suggest booking early for your date."],
+      pics: ["valley-terrace-view", "vineyard-mountain", "constantia-glen-cellar", "picnic-lawn-dam", "wine-tram-green", "tasting-board", "franschhoek-mural", "haute-cabriere-frame", "cheetah-agapanthus", "homestead-lawns", "goat-tower", "goat-in-tower", "barrel-tasting-bar", "vineyard-pavilion", "cape-dutch-homestead"] },
+    { id: "whales", cat: "day", scene: "whale", photo: "whale-cliff-waves", name: "Hermanus Whale Route", dur: "9 hours", grp: "Up to 12", season: "Jun to Nov",
+      blurb: "A coastal drive to the town known for land-based whale watching.",
+      hl: ["Clifftop whale watching in season", "Scenic Clarence Drive coastline", "Time in Hermanus old harbour"],
+      desc: ["A coastal drive to Hermanus, a town known for watching whales from the cliff path. In season, southern right whales come close to the shore.",
+             "The route follows the scenic coastline and there is time in the old harbour before the drive back."],
+      know: ["Whale season runs from about June to November. Outside those months the drive is still scenic, but sightings are unlikely.", "Sightings depend on the weather and the whales, so we cannot promise them."],
+      pics: ["whale-cliff-waves", "whale-harbour-wall", "whale-harbour-boats", "whale-seafront"] },
+    { id: "township", cat: "day", scene: "township", photo: "township/WhatsApp Image 2026-11-13 at 21.38.43.jpeg", name: "Township Tour", dur: "Duration on request", grp: "Up to 12",
+      blurb: "A guided walk with local stories, street art and community culture.",
+      hl: ["Explore the neighbourhood with a local guide", "See murals and local art", "Stop at local spots along the way"],
+      desc: ["Explore Cape Town township life on a guided walk, hearing local stories and seeing the street art and neighbourhood landmarks along the way.",
+             "The route includes time to meet local people and visit community spots. Your guide can adjust the experience to your interests."],
+      know: ["Wear comfortable walking shoes.", "Please follow your guide's advice and ask before taking photographs of people."],
+      pics: ["township/WhatsApp Image 2026-11-13 at 21.33.11.jpeg", "township/WhatsApp Image 12026-11-13 at 21.33.11.jpeg", "township/WhatsApp Image 2026-11-13 at 21.37.08.jpeg", "township/WhatsApp Image 2026-11-13 at 21.38.43.jpeg"] },
+    { id: "safari", cat: "multi", scene: "safari", photo: "safari/WhatsApp Image 2026-11-13 at 11.42.33.jpeg", name: "Safari Escape", dur: "5 days", grp: "Up to 8",
+      blurb: "Game drives with lodge stays and transfers, planned around your dates.",
+      hl: ["Morning and evening game drives", "Lodge stays arranged for you", "Transfers from your arrival point"],
+      desc: ["Five days built around game drives. You head out in the early morning and late afternoon, when the animals are most active, and rest at a lodge in between.",
+             "We arrange transfers from your arrival point and plan the lodge stays around your dates and budget. Tell us what you would like to see and we suggest the best fit."],
+      know: ["Game viewing depends on the season and the animals, so sightings cannot be promised.", "Pack warm layers for early morning drives."],
+      pics: ["safari/WhatsApp Image 2026-11-13 at 11.42.33.jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.33 (1).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.33 (2).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.42.jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.42 (1).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.42 (2).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.43.jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.43 (1).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.43 (2).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.43 (3).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.44.jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.44 (1).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.45.jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.45 (1).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.45 (2).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.46.jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.46 (1).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.46 (2).jpeg", "safari/WhatsApp Image 2026-11-13 at 11.42.47.jpeg"] },
+    { id: "airport", cat: "transfer", scene: "transfer", photo: "shuttle/WhatsApp Image 2026-11-14 at 12.17.04.jpeg", name: "Airport Transfers", dur: "Per trip", grp: "1 to 14",
+      blurb: "Meet and greet pickups and drop-offs, matched to your flight time.",
+      hl: ["Driver tracks your flight", "Pickup from your stay or exact location", "Sedan, SUV and minibus options"],
+      desc: ["Meet and greet pickups and drop-offs, matched to your flight time. Your driver tracks your flight, so a delay does not leave you waiting without a ride.",
+             "Choose a sedan, an SUV or a minibus depending on your group and luggage. We pick up from the location where you are staying and drop you at your exact destination."],
+      know: ["Send us your flight number and arrival time.", "Tell us how many people and bags are travelling so we send the right vehicle."],
+      pics: ["shuttle/WhatsApp Image 2026-11-14 at 12.17.04.jpeg", "shuttle/WhatsApp Image 2026-11-14 at 12.17.04 (1).jpeg", "shuttle/WhatsApp Image 2026-11-14 at 12.18.24.jpeg"] },
+    { id: "corporate", cat: "transfer", scene: "transfer", photo: "shuttle/WhatsApp Image 2026-11-14 at 12.17.04 (1).jpeg", name: "Group & Event Shuttles", dur: "Hourly or daily", grp: "Up to 30",
+      blurb: "Reliable shuttles for conferences, weddings and school or church groups.",
+      hl: ["Fixed timetable between venues", "Seating for larger groups", "Quote by route and hours"],
+      desc: ["Reliable shuttles for conferences, weddings, school groups and church groups. We run a fixed timetable between venues, or collect guests at set times.",
+             "Pricing depends on the route and the hours, so send us the venues, the dates and the number of guests for a quote."],
+      know: ["Tell us the pickup and drop-off points and the timetable you need.", "For larger groups we can use more than one vehicle."],
+      pics: ["shuttle/WhatsApp Image 2026-11-14 at 12.17.04.jpeg", "shuttle/WhatsApp Image 2026-11-14 at 12.17.04 (1).jpeg", "shuttle/WhatsApp Image 2026-11-14 at 12.18.24.jpeg"] }
+  ];
+
+  function scene(kind, u) {
+    var sky = '<defs><linearGradient id="s' + u + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#011c3a"/><stop offset=".6" stop-color="#044ac3"/><stop offset="1" stop-color="#3c86ff"/></linearGradient>' +
+      '<linearGradient id="d' + u + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#011c3a"/><stop offset=".5" stop-color="#044ac3"/><stop offset="1" stop-color="#fe7e03"/></linearGradient></defs>';
+    var body = "";
+    if (kind === "mountain") {
+      body = '<rect width="400" height="250" fill="url(#s' + u + ')"/><circle cx="318" cy="78" r="26" fill="#fe7e03"/>' +
+        '<path d="M0 190 L45 158 L95 130 L122 104 L132 90 L285 87 L296 100 L338 130 L400 160 V250 H0Z" fill="#0a3a86"/>' +
+        '<path d="M0 214 Q100 178 200 204 T400 196 V250 H0Z" fill="#011c3a"/>' +
+        '<path d="M0 232 Q100 218 200 230 T400 226" fill="none" stroke="#fe7e03" stroke-width="5" stroke-linecap="round"/>';
+    } else if (kind === "wine") {
+      var rows = "";
+      for (var i = -8; i <= 8; i++) { rows += '<line x1="' + (200 + i * 46) + '" y1="250" x2="' + (200 + i * 12) + '" y2="168" stroke="#2f7bff" stroke-opacity=".55" stroke-width="3"/>'; }
+      body = '<rect width="400" height="250" fill="url(#d' + u + ')"/><circle cx="90" cy="128" r="30" fill="#fe7e03"/>' +
+        '<path d="M0 170 Q80 130 160 160 T320 150 T400 160 V250 H0Z" fill="#0a3a86"/>' +
+        '<path d="M0 182 Q120 156 240 178 T400 172 V250 H0Z" fill="#06295d"/>' +
+        '<g clip-path="inset(0 0 0 0)">' + rows + '</g>' +
+        '<path d="M0 250 V232 Q200 205 400 232 V250Z" fill="#011c3a"/>';
+    } else if (kind === "whale") {
+      body = '<rect width="400" height="250" fill="url(#s' + u + ')"/><circle cx="82" cy="70" r="24" fill="#fe7e03"/>' +
+        '<path d="M0 150 Q50 140 100 150 T200 150 T300 150 T400 150 V250 H0Z" fill="#0a3a86"/>' +
+        '<path d="M184 168 C186 142 176 124 150 112 C170 108 190 116 200 132 C210 116 230 108 250 112 C224 124 214 142 216 168Z" fill="#011c3a"/>' +
+        '<path d="M0 178 Q50 166 100 178 T200 178 T300 178 T400 178 V250 H0Z" fill="#06295d"/>' +
+        '<path d="M0 212 Q50 200 100 212 T200 212 T300 212 T400 212 V250 H0Z" fill="#011c3a"/>' +
+        '<path d="M0 196 Q50 186 100 196 T200 196 T300 196 T400 196" fill="none" stroke="#fe7e03" stroke-width="4" stroke-linecap="round"/>';
+    } else if (kind === "garden") {
+      body = '<rect width="400" height="250" fill="url(#s' + u + ')"/><circle cx="310" cy="74" r="26" fill="#fe7e03"/>' +
+        '<path d="M0 150 Q60 110 130 132 T260 128 T400 140 V250 H0Z" fill="#0a3a86"/>' +
+        '<path d="M0 250 V190 Q90 160 170 190 T400 176 V250Z" fill="#011c3a"/>' +
+        '<path d="M214 250 C196 222 270 212 244 184 C224 164 160 172 178 146" fill="none" stroke="#fe7e03" stroke-width="9" stroke-linecap="round"/>' +
+        '<path d="M214 250 C196 222 270 212 244 184 C224 164 160 172 178 146" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2" stroke-dasharray="7 9" stroke-linecap="round"/>';
+    } else if (kind === "safari") {
+      body = '<rect width="400" height="250" fill="url(#d' + u + ')"/><circle cx="200" cy="168" r="54" fill="#fe7e03"/>' +
+        '<rect y="170" width="400" height="80" fill="#011c3a"/>' +
+        '<path d="M96 200 L104 200 L108 150 Q96 148 84 140 M108 150 Q120 146 130 136" fill="none" stroke="#011c3a" stroke-width="6" stroke-linecap="round"/>' +
+        '<ellipse cx="108" cy="126" rx="62" ry="14" fill="#011c3a"/><ellipse cx="80" cy="134" rx="30" ry="9" fill="#011c3a"/><ellipse cx="140" cy="132" rx="30" ry="9" fill="#011c3a"/>' +
+        '<path d="M300 200 L304 168 M312 200 L316 160 M324 200 L322 172 M336 200 L342 164" stroke="#011c3a" stroke-width="3" stroke-linecap="round"/>';
+    } else {
+      body = '<rect width="400" height="250" fill="url(#s' + u + ')"/><circle cx="76" cy="84" r="24" fill="#fe7e03"/>' +
+        '<path d="M0 156 L70 128 L130 150 L200 118 L280 150 L340 130 L400 150 V250 H0Z" fill="#0a3a86"/>' +
+        '<polygon points="176,150 224,150 344,250 56,250" fill="#011c3a"/>' +
+        '<path d="M200 156 V170 M200 184 V204 M200 218 V250" stroke="#fe7e03" stroke-width="5" stroke-linecap="round"/>' +
+        '<polygon points="290,64 350,46 326,92 312,78 298,88" fill="#fff" fill-opacity=".92"/>';
+    }
+    return '<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + sky + body + '</svg>';
+  }
+
+
+  var grid = document.getElementById("grid");
+  var filters = document.getElementById("filters");
+  var sel = document.getElementById("fTour");
+  var current = "all";
+
+  var clock = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  var people = '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18.5 14c1.6.8 2.5 2.4 2.5 4.5"/></svg>';
+
+  function assetPath(name) {
+    if (!name) return "";
+    var path = String(name).replace(/^img\//, "");
+    if (path.indexOf("/") === -1 && path.indexOf(".") === -1) path += ".jpg";
+    return encodeURI("img/" + path);
+  }
+
+  function render() {
+    var html = "";
+    TOURS.forEach(function (t, i) {
+      if (current !== "all" && t.cat !== current) return;
+      var art = t.photo ? '<img src="' + assetPath(t.photo) + '" alt="' + t.name + '" loading="lazy">' : scene(t.scene, i);
+      html += '<article class="card"><div class="art">' + art +
+        (t.season ? '<span class="badge">Season: ' + t.season + '</span>' : '') + '</div>' +
+        '<div class="card-body"><span class="cat">' + CATS[t.cat] + '</span><h3><button type="button" class="card-open" data-open="' + t.id + '">' + t.name + '</button></h3><p class="blurb">' + t.blurb + '</p>' +
+        '<div class="meta"><span>' + clock + t.dur + '</span><span>' + people + t.grp + '</span></div>' +
+        '<ul class="hl">' + t.hl.map(function (h) { return '<li>' + h + '</li>'; }).join("") + '</ul>' +
+        '<div class="card-foot"><span class="more">View details and photos &rarr;</span>' +
+        '<button class="btn small" type="button" data-tour="' + t.id + '">Enquire</button></div></div></article>';
+    });
+    grid.innerHTML = html;
+  }
+
+  function buildFilters() {
+    var opts = [["all", "All"], ["day", "Day tours"], ["wine", "Wine"], ["multi", "Multi-day"], ["transfer", "Transfers"]];
+    filters.innerHTML = opts.map(function (o) {
+      return '<button class="chip" type="button" data-f="' + o[0] + '" aria-pressed="' + (o[0] === current) + '">' + o[1] + '</button>';
+    }).join("");
+  }
+
+  filters.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-f]"); if (!b) return;
+    current = b.getAttribute("data-f");
+    Array.prototype.forEach.call(filters.children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+    render();
+  });
+
+  grid.addEventListener("click", function (e) {
+    var o = e.target.closest("[data-open]");
+    if (o) { openTour(o.getAttribute("data-open"), o); return; }
+    var b = e.target.closest("[data-tour]"); if (!b) return;
+    sel.value = b.getAttribute("data-tour");
+    update();
+    go("enquire");
+    setTimeout(function () { document.getElementById("fName").focus({ preventScroll: true }); }, 400);
+  });
+
+  sel.innerHTML = '<option value="">Not sure yet</option>' + TOURS.map(function (t) { return '<option value="' + t.id + '">' + t.name + '</option>'; }).join("");
+
+  var f = { name: document.getElementById("fName"), date: document.getElementById("fDate"), pax: document.getElementById("fPax"), msg: document.getElementById("fMsg") };
+  var preview = document.getElementById("preview");
+  var waBtn = document.getElementById("waBtn");
+
+  function enquiryText() {
+    var t = TOURS.filter(function (x) { return x.id === sel.value; })[0];
+    var lines = ["Hi AC Tours, I would like a quote."];
+    lines.push("Tour: " + (t ? t.name : "Not sure yet"));
+    if (f.name.value.trim()) lines.push("Name: " + f.name.value.trim());
+    if (f.date.value) lines.push("Date: " + f.date.value);
+    if (f.pax.value) lines.push("Travellers: " + f.pax.value);
+    if (f.msg.value.trim()) lines.push("Notes: " + f.msg.value.trim());
+    return lines.join("\n");
+  }
+  function update() {
+    var text = enquiryText();
+    preview.value = text;
+    waBtn.href = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text);
+  }
+  [sel, f.name, f.date, f.pax, f.msg].forEach(function (el) { el.addEventListener("input", update); el.addEventListener("change", update); });
+  document.getElementById("form").addEventListener("submit", function (e) { e.preventDefault(); });
+
+  function copyText(text, el, note) {
+    function fallback() {
+      if (el && el.select) { el.focus(); el.select(); }
+      note("Press Ctrl+C (or hold and copy) to copy the selected text.");
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note("Copied."); }, fallback);
+    } catch (err) { fallback(); }
+  }
+  var copyNote = document.getElementById("copyNote");
+  function say(msg) { copyNote.textContent = msg; setTimeout(function () { copyNote.textContent = ""; }, 3500); }
+  document.getElementById("copyEnq").addEventListener("click", function () { copyText(preview.value, preview, say); });
+
+  var waLink = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent("Hi AC Tours, I would like to find out more about your tours.");
+  document.getElementById("cPhone").textContent = CFG.phone;
+  document.getElementById("cPhone").href = "tel:" + CFG.tel;
+  document.getElementById("cWa").textContent = CFG.waDisplay;
+  document.getElementById("cWa").href = waLink;
+  document.getElementById("cEmail").textContent = CFG.email;
+  document.getElementById("cEmail").href = "mailto:" + CFG.email;
+  document.getElementById("emailQrLink").href = "mailto:" + CFG.email;
+  document.getElementById("fEmail").href = "mailto:" + CFG.email;
+  document.getElementById("cGoogle").href = CFG.google;
+  document.getElementById("cTiktok").href = CFG.tiktok;
+  document.getElementById("fTiktok").href = CFG.tiktok;
+  document.getElementById("fCall").href = "tel:" + CFG.tel;
+  document.getElementById("fWa").href = waLink;
+  document.getElementById("fGoogle").href = CFG.google;
+  document.getElementById("fab").href = waLink;
+  var EMAIL_QR = [
+    "1111111000100011001111111", "1000001001000011001000001", "1011101010010000101011101", "1011101001001011001011101", "1011101001001110001011101",
+    "1000001000111111101000001", "1111111010101010101111111", "0000000010010111100000000", "1110111110001100011000100", "0110010111011100001001111",
+    "0111101110111010111101111", "0001010101101110010100000", "0010111110111100011000001", "0111000100110000011000111", "1001111111000010010110111",
+    "0100010010011110001100000", "1001111110111100111111010", "0000000011101000100010011", "1111111010100001101010111", "1000001010101100100010011",
+    "1011101010011110111110000", "1011101001101001100110100", "1011101010000100110111001", "1000001011000100100111010", "1111111010101101111001011"
+  ];
+  var qrPath = "";
+  EMAIL_QR.forEach(function (row, y) {
+    var x = 0;
+    while (x < row.length) {
+      if (row.charAt(x) !== "1") { x++; continue; }
+      var start = x;
+      while (x < row.length && row.charAt(x) === "1") x++;
+      qrPath += "M" + start + " " + y + "h" + (x - start) + "v1h-" + (x - start) + "z";
+    }
+  });
+  document.getElementById("emailQr").innerHTML = '<svg viewBox="-4 -4 33 33" role="img" aria-label="QR code for emailing AC Tours"><path fill="#011c3a" d="' + qrPath + '"/></svg>';
+  var vals = { phone: CFG.phone, wa: CFG.waDisplay };
+  Array.prototype.forEach.call(document.querySelectorAll("[data-copy]"), function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-copy");
+      copyText(vals[k], null, function (m) { var old = b.textContent; b.textContent = m.indexOf("Copied") === 0 ? "Copied" : "Select text"; setTimeout(function () { b.textContent = old; }, 1800); });
+    });
+  });
+
+  var menuBtn = document.getElementById("menuBtn"), nav = document.getElementById("nav");
+  menuBtn.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  var GALLERY = [{"f": "cape-point-coast", "c": "Cape Point coastline", "w": 1280, "h": 529}, {"f": "boulders-penguins", "c": "African penguins at Boulders Beach", "w": 1280, "h": 529}, {"f": "peninsula-coast", "c": "Peninsula coastline", "w": 599, "h": 1280}, {"f": "baboon-baby-sitting", "c": "A chacma baboon and a baby on the peninsula", "w": 960, "h": 1280}, {"f": "cape-of-good-hope-sign", "c": "Cape of Good Hope, the most south-western point of the African continent", "w": 1280, "h": 529}, {"f": "camps-bay", "c": "Camps Bay below the Twelve Apostles", "w": 1280, "h": 529}, {"f": "penguins-pair", "c": "Two African penguins", "w": 960, "h": 1280}, {"f": "beaded-birds-lookout", "c": "Hand-beaded birds at a coastal lookout", "w": 599, "h": 1280}, {"f": "cape-point-sign", "c": "Cape Point, 34°21′24″ S, 18°29′51″ E", "w": 960, "h": 1280}, {"f": "noordhoek-lookout", "c": "Coastal lookout on the peninsula", "w": 1280, "h": 529}, {"f": "harbour-front", "c": "Harbour front on the peninsula", "w": 960, "h": 1280}, {"f": "cape-point-viewpoint", "c": "The viewpoint at Cape Point", "w": 1280, "h": 529}, {"f": "baboon-baby-shore", "c": "A chacma baboon and a baby by the shore", "w": 960, "h": 1280}, {"f": "proteas", "c": "King proteas, South Africa’s national flower", "w": 599, "h": 1280}, {"f": "penguins-pair-2", "c": "African penguins on a woodland path", "w": 960, "h": 1280}, {"f": "group-cape-of-good-hope", "c": "Groups welcome at the Cape of Good Hope sign", "w": 1280, "h": 529}, {"f": "boulders-welcome", "c": "Welcome to Boulders, Table Mountain National Park", "w": 599, "h": 1280}, {"f": "ostrich-egg-globe", "c": "Carved ostrich egg globe", "w": 599, "h": 1280}, {"f": "cape-town-night", "c": "The Cape Town sign at night", "w": 1280, "h": 529}];
+  var WINE = [{"f": "valley-terrace-view", "c": "Terrace view across the valley to the mountains", "w": 1280, "h": 529}, {"f": "vineyard-mountain", "c": "Vines below the mountain", "w": 960, "h": 1280}, {"f": "constantia-glen-cellar", "c": "Constantia Glen cellar below the mountain", "w": 960, "h": 1280}, {"f": "picnic-lawn-dam", "c": "Lawn picnics beside the dam", "w": 960, "h": 1280}, {"f": "wine-tram-green", "c": "The Franschhoek Wine Tram", "w": 960, "h": 1280}, {"f": "young-grapes", "c": "Young grapes on the vine", "w": 599, "h": 1280}, {"f": "klein-constantia-sign", "c": "Klein Constantia entrance sign", "w": 960, "h": 1280}, {"f": "haute-cabriere-frame", "c": "A photo frame with a mountain view at Haute Cabrière", "w": 1280, "h": 529}, {"f": "tasting-board", "c": "A tasting board with cheeses and cured meats", "w": 960, "h": 1280}, {"f": "franschhoek-mural", "c": "Greetings from Franschhoek mural", "w": 960, "h": 1280}, {"f": "cape-point-vineyards", "c": "Cape Point Vineyards tasting room", "w": 960, "h": 1280}, {"f": "meerendal-barrels", "c": "Meerendal entrance with stacked barrels", "w": 1280, "h": 529}, {"f": "goat-tower", "c": "The goat tower and its spiral stair", "w": 960, "h": 1280}, {"f": "goat-in-tower", "c": "A goat looking out of the tower", "w": 599, "h": 1280}, {"f": "sculpture-vineyard", "c": "A sculpture overlooking the vineyard rows", "w": 960, "h": 1280}, {"f": "cape-dutch-homestead", "c": "Cape Dutch homestead under the mountain", "w": 1280, "h": 529}, {"f": "cheetah-agapanthus", "c": "A bronze cheetah among agapanthus", "w": 1280, "h": 529}, {"f": "cheetah-sculptures", "c": "Bronze cheetah sculptures above the vineyards", "w": 1280, "h": 529}, {"f": "lanzerac-terrace", "c": "Lunch tables in front of the vines", "w": 1280, "h": 529}, {"f": "homestead-lawns", "c": "Lawns and rose gardens at the homestead", "w": 1280, "h": 529}, {"f": "wine-tram-street", "c": "The wine tram on Franschhoek’s main street", "w": 1280, "h": 529}, {"f": "constantia-glen-frame", "c": "Constantia Glen photo frame sign", "w": 960, "h": 1280}, {"f": "rose-on-the-lawn", "c": "A glass of rosé on the lawn", "w": 960, "h": 1280}, {"f": "barrel-tasting-bar", "c": "Tasting at a barrel-shaped bar", "w": 960, "h": 1280}, {"f": "donkeys", "c": "Donkeys under the oak trees", "w": 960, "h": 1280}, {"f": "babel-lavender", "c": "Babel, with lavender beds", "w": 599, "h": 1280}, {"f": "raised-fist-statue", "c": "Bronze statue with a raised fist", "w": 960, "h": 1280}, {"f": "bird-sculpture-pond", "c": "A bird sculpture in the pond", "w": 960, "h": 1280}, {"f": "boschendal-cart", "c": "A Boschendal cart in the garden", "w": 599, "h": 1280}, {"f": "dam-valley-view", "c": "View over the dam towards the coast", "w": 960, "h": 1280}, {"f": "vineyard-pavilion", "c": "A timber and glass cabin beside the vines", "w": 599, "h": 1280}, {"f": "lunch-with-view", "c": "Toasted sandwich with a view over the dam", "w": 599, "h": 1280}, {"f": "winery-courtyard-lawn", "c": "Whitewashed winery buildings across a lawn", "w": 960, "h": 1280}];
+  var PHOTOS = GALLERY.map(function (g) { return { f: g.f, c: g.c, w: g.w, h: g.h, g: "peninsula" }; })
+    .concat(WINE.map(function (g) { return { f: g.f, c: g.c, w: g.w, h: g.h, g: "winelands" }; }))
+    .concat([
+      { f: "township/WhatsApp Image 2026-11-13 at 21.33.11.jpeg", c: "A 'Whites Only' sign on a wooden bench", w: 1600, h: 715 },
+      { f: "township/WhatsApp Image 12026-11-13 at 21.33.11.jpeg", c: "A Langa township tour information page", w: 715, h: 1600 },
+      { f: "township/WhatsApp Image 2026-11-13 at 21.37.08.jpeg", c: "A printed township walking tour brochure", w: 715, h: 1600 },
+      { f: "township/WhatsApp Image 2026-11-13 at 21.38.43.jpeg", c: "Visitors listening to a local guide indoors", w: 899, h: 1599 },
+      { f: "whale-cliff-waves", c: "Whales surfacing below the cliffs at Hermanus", w: 1280, h: 529 },
+      { f: "whale-harbour-wall", c: "Harbour wall and rocky coast on the whale route", w: 960, h: 1280 },
+      { f: "whale-harbour-boats", c: "Boats in the Hermanus harbour", w: 960, h: 1280 },
+      { f: "whale-seafront", c: "The scenic seafront road on the whale route", w: 960, h: 1280 }
+    ].map(function (g) { g.g = (g.f.indexOf("whale") === 0 ? "whales" : "township"); return g; }));
+  var VIDEOS = [
+    { n: 1, c: "Chapman’s Peak" },
+    { n: 2, c: "Colourful beach huts on the sand" },
+    { n: 3, c: "Local art for sale along the route" },
+    { n: 4, c: "Penguins on the beach" },
+    { n: 5, c: "Live dance and drumming on the street" },
+    { n: 6, c: "A shady lawn and café at a winelands estate" },
+    { n: 7, c: "A craft shop full of beadwork and carvings", w: 480, h: 854, g: "whales" },
+    { n: 8, c: "Craft stalls, a stone monument and the rocky coast", w: 480, h: 854, g: "whales" },
+    { n: 9, c: "The seafront road on the whale route", w: 480, h: 854, g: "whales" },
+    { n: 10, c: "Waves breaking on the rocks below the cliff", w: 480, h: 270, g: "whales" },
+    { n: 11, c: "The harbour wall and boats", w: 480, h: 1120, g: "whales" },
+    { n: 12, c: "Boats in the harbour, mountains behind", w: 480, h: 1120, g: "whales" }
+  ];
+  var gFilter = "all", gList = PHOTOS.slice(), gBuilt = false;
+  var gal = document.getElementById("gallery-grid"), gFilters = document.getElementById("gFilters"), vids = document.getElementById("videos");
+  function shotsHtml(list) {
+    return list.map(function (g, i) {
+      return '<button class="shot" type="button" data-i="' + i + '"><img src="' + assetPath(g.f) + '" alt="' + g.c + '" width="' + g.w + '" height="' + g.h + '" loading="lazy"><span>' + g.c + '</span></button>';
+    }).join("");
+  }
+  function countOf(key) { return PHOTOS.filter(function (g) { return g.g === key; }).length; }
+  function renderGallery() {
+    var showVids = gFilter === "videos";
+    gal.hidden = showVids; vids.hidden = !showVids;
+    if (!showVids) Array.prototype.forEach.call(vids.querySelectorAll("video"), function (v) { v.pause(); });
+    gList = PHOTOS.filter(function (g) { return gFilter === "all" || g.g === gFilter; });
+    gal.innerHTML = showVids ? "" : shotsHtml(gList);
+    if (showVids) vids.innerHTML = VIDEOS.filter(function (v) { return gFilter === "videos" || v.g === "whales"; }).map(clipHtml).join("");
+  }
+  function clipHtml(v) {
+    var w = v.w || 480, h = v.h || 854;
+    return '<figure class="clip"><video controls playsinline preload="none" width="' + w + '" height="' + h + '" style="aspect-ratio:' + w + ' / ' + h + '" poster="vid/clip' + v.n + '.jpg" src="vid/clip' + v.n + '.mp4" aria-label="' + v.c + '"></video><figcaption>' + v.c + '</figcaption></figure>';
+  }
+  function buildGallery() {
+    if (gBuilt) return;
+    gBuilt = true;
+    var opts = [["all", "All pictures", PHOTOS.length], ["peninsula", "Cape Peninsula", countOf("peninsula")], ["winelands", "Winelands", countOf("winelands")], ["township", "Township tour", countOf("township")], ["whales", "Whale watching", countOf("whales")], ["videos", "All videos", VIDEOS.length]];
+    gFilters.innerHTML = opts.map(function (o) {
+      return '<button class="chip" type="button" data-g="' + o[0] + '" aria-pressed="' + (o[0] === gFilter) + '">' + o[1] + ' (' + o[2] + ')</button>';
+    }).join("");
+    renderGallery();
+  }
+  gFilters.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-g]"); if (!b) return;
+    gFilter = b.getAttribute("data-g");
+    Array.prototype.forEach.call(gFilters.children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+    renderGallery();
+  });
+  document.addEventListener("play", function (e) {
+    Array.prototype.forEach.call(document.querySelectorAll("video"), function (el) { if (el !== e.target) el.pause(); });
+  }, true);
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbCap = document.getElementById("lbCap"), lbIdx = 0, lastFocus = null;
+  function showPhoto(i) {
+    lbIdx = (i + gList.length) % gList.length;
+    var g = gList[lbIdx];
+    lbImg.src = assetPath(g.f); lbImg.alt = g.c; lbCap.textContent = g.c;
+  }
+  function openLb(i) { lastFocus = document.activeElement; showPhoto(i); lb.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("lbClose").focus(); }
+  function closeLb() { lb.hidden = true; document.body.style.overflow = ""; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  gal.addEventListener("click", function (e) { var b = e.target.closest("[data-i]"); if (b) openLb(Number(b.getAttribute("data-i"))); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+  document.getElementById("lbClose").addEventListener("click", closeLb);
+  document.getElementById("lbPrev").addEventListener("click", function () { showPhoto(lbIdx - 1); });
+  document.getElementById("lbNext").addEventListener("click", function () { showPhoto(lbIdx + 1); });
+  document.addEventListener("keydown", function (e) {
+    if (lb.hidden) return;
+    if (e.key === "Escape") closeLb();
+    else if (e.key === "ArrowLeft") showPhoto(lbIdx - 1);
+    else if (e.key === "ArrowRight") showPhoto(lbIdx + 1);
+  });
+
+  // Tour details: description, quick facts and a picture gallery
+  var tm = document.getElementById("tm"), tmSheet = document.getElementById("tmSheet"), tmBody = document.getElementById("tmBody");
+  var tmStage = document.getElementById("tmStage"), tmThumbs = document.getElementById("tmThumbs"), tmCount = document.getElementById("tmCount");
+  var tmPrev = document.getElementById("tmPrev"), tmNext = document.getElementById("tmNext"), tmClose = document.getElementById("tmClose");
+  var tmTour = null, tmIdx = 0, tmLast = null, tmX = null;
+  function byId(id) { return TOURS.filter(function (x) { return x.id === id; })[0]; }
+  function lis(items) { return items.map(function (h) { return '<li>' + h + '</li>'; }).join(""); }
+  function tmShow(i) {
+    var pics = tmTour.pics || [];
+    if (!pics.length) { tmStage.innerHTML = scene(tmTour.scene, 99); return; }
+    tmIdx = (i + pics.length) % pics.length;
+    tmStage.innerHTML = '<img src="' + assetPath(pics[tmIdx]) + '" alt="' + tmTour.name.replace(/"/g, "&quot;") + ', picture ' + (tmIdx + 1) + '">';
+    tmCount.textContent = (tmIdx + 1) + " / " + pics.length;
+    Array.prototype.forEach.call(tmThumbs.children, function (b, k) {
+      b.setAttribute("aria-current", String(k === tmIdx));
+      if (k === tmIdx) tmThumbs.scrollLeft = b.offsetLeft - (tmThumbs.clientWidth - b.offsetWidth) / 2;
+    });
+  }
+  function openTour(id, from) {
+    var t = byId(id); if (!t) return;
+    tmTour = t; tmLast = from || document.activeElement;
+    var pics = t.pics || [], multi = pics.length > 1;
+    document.getElementById("tmCat").textContent = CATS[t.cat];
+    document.getElementById("tmTitle").textContent = t.name;
+    document.getElementById("tmMeta").innerHTML = '<span>' + clock + t.dur + '</span><span>' + people + t.grp + '</span>' + (t.season ? '<span>Season: ' + t.season + '</span>' : '');
+    document.getElementById("tmDesc").innerHTML = t.desc.map(function (p) { return '<p>' + p + '</p>'; }).join("");
+    document.getElementById("tmHl").innerHTML = lis(t.hl);
+    document.getElementById("tmKnow").innerHTML = lis(t.know);
+    tmThumbs.innerHTML = multi ? pics.map(function (p, k) {
+      return '<button type="button" data-p="' + k + '" aria-label="Show picture ' + (k + 1) + '" aria-current="false"><img src="' + assetPath(p) + '" alt="" loading="lazy"></button>';
+    }).join("") : "";
+    tmThumbs.hidden = tmPrev.hidden = tmNext.hidden = tmCount.hidden = !multi;
+    tm.hidden = false; document.body.style.overflow = "hidden";
+    tmSheet.scrollTop = 0; tmBody.scrollTop = 0;
+    tmShow(0);
+    tmClose.focus();
+  }
+  function closeTour() {
+    tm.hidden = true; document.body.style.overflow = "";
+    if (tmLast && tmLast.focus) tmLast.focus();
+  }
+  tmClose.addEventListener("click", closeTour);
+  tm.addEventListener("click", function (e) { if (e.target === tm) closeTour(); });
+  tmPrev.addEventListener("click", function () { tmShow(tmIdx - 1); });
+  tmNext.addEventListener("click", function () { tmShow(tmIdx + 1); });
+  tmThumbs.addEventListener("click", function (e) { var b = e.target.closest("[data-p]"); if (b) tmShow(Number(b.getAttribute("data-p"))); });
+  tmStage.addEventListener("touchstart", function (e) { tmX = e.touches[0].clientX; }, { passive: true });
+  tmStage.addEventListener("touchend", function (e) {
+    if (tmX === null || !(tmTour.pics || []).length) return;
+    var dx = e.changedTouches[0].clientX - tmX; tmX = null;
+    if (dx > 45) tmShow(tmIdx - 1); else if (dx < -45) tmShow(tmIdx + 1);
+  }, { passive: true });
+  document.getElementById("tmEnq").addEventListener("click", function () {
+    sel.value = tmTour.id; update(); closeTour();
+    go("enquire");
+    setTimeout(function () { document.getElementById("fName").focus({ preventScroll: true }); }, 400);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (tm.hidden) return;
+    if (e.key === "Escape") closeTour();
+    else if (e.key === "ArrowLeft") tmShow(tmIdx - 1);
+    else if (e.key === "ArrowRight") tmShow(tmIdx + 1);
+  });
+  document.addEventListener("focusin", function (e) { if (!tm.hidden && !tm.contains(e.target)) tmClose.focus(); });
+
+  // Pages: Home, Gallery, About and Contact us. "tours", "how" and "enquire" are spots inside those pages.
+  var VIEWS = ["home", "gallery", "about", "contact"];
+  var ALIAS = { tours: "home", how: "home", enquire: "contact" };
+  var lastName = null;
+  function hashName() { return (location.hash || "").replace(/^#/, ""); }
+  function showView(name) {
+    var v = ALIAS[name] || name, target = ALIAS[name] ? name : null;
+    if (VIEWS.indexOf(v) < 0) { v = "home"; name = "home"; target = null; }
+    lastName = name;
+    VIEWS.forEach(function (n) { document.getElementById("view-" + n).hidden = n !== v; });
+    var active = name === "how" ? "home" : name === "enquire" ? "contact" : name;
+    Array.prototype.forEach.call(document.querySelectorAll("#nav a"), function (a) {
+      if (a.getAttribute("data-go") === active) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    if (v === "gallery") buildGallery();
+    var el = target && document.getElementById(target);
+    if (el) el.scrollIntoView({ behavior: "auto" }); else window.scrollTo(0, 0);
+  }
+  function go(name) {
+    try { if (hashName() !== name) location.hash = name; } catch (err) {}
+    showView(name);
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-go]"); if (!a) return;
+    e.preventDefault(); go(a.getAttribute("data-go"));
+  });
+  window.addEventListener("hashchange", function () { if (hashName() !== lastName) showView(hashName() || "home"); });
+
+  buildFilters(); render(); update();
+  showView(hashName() || "home");
+})();
+</script>
+
+</body></html>
