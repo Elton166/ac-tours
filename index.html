@@ -281,6 +281,18 @@ section { padding-block: 72px; }
 .reviews .head { max-width: 52ch; }
 .reviews .head p { color: #c3d2ec; }
 .reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.review-summary {
+  background: var(--orange); color: var(--navy); border-radius: 22px; padding: 24px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 220px;
+}
+.review-summary strong { font-family: var(--font-display); font-size: clamp(3.6rem, 8vw, 5.4rem); line-height: .85; }
+.review-summary-stars { color: #fff; letter-spacing: 4px; font-size: 20px; }
+.review-summary small { display: block; font-weight: 700; margin-top: 8px; }
+.review-card.featured { grid-column: span 2; }
+.review-map {
+  grid-column: 1 / -1; width: 100%; height: 420px; border: 0; border-radius: 22px;
+  background: var(--surface); box-shadow: 0 18px 44px rgba(0,0,0,.18);
+}
 .review-card {
   background: var(--surface); color: var(--fg); border: 1px solid rgba(255,255,255,.12); border-radius: 22px;
   padding: 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0;
@@ -412,6 +424,8 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
   .hero-center { padding-block: 32px 92px; }
   .enq-grid { grid-template-columns: 1fr; gap: 32px; }
   .reviews-grid { grid-template-columns: 1fr; }
+  .review-card.featured { grid-column: auto; }
+  .review-map { grid-column: auto; height: 360px; }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .ashley-stats div { padding: 12px 6px; }
   .ashley-stats b { font-size: .92rem; overflow-wrap: normal; }
@@ -508,25 +522,23 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
     <div class="wrap">
       <div class="head">
         <span class="tag">Guest reviews</span>
-        <h2>See feedback from AC Tours guests</h2>
-        <p>Read verified guest feedback on Google before planning your private Cape Town journey.</p>
+        <h2>5.0 from AC Tours guests</h2>
+        <p>Verified feedback from our Google listing. Open the listing to read all 4 reviews and sort or filter them.</p>
       </div>
       <div class="reviews-grid">
-        <article class="review-card">
-          <div class="review-stars" aria-label="Google reviews">&#9733;</div>
-          <blockquote>Read reviews from guests who travelled with AC Tours.</blockquote>
-          <div class="review-name"><span class="review-avatar">G</span><span><b>Google reviews</b><small>Verified public feedback</small></span></div>
+        <aside class="review-summary" aria-label="Google review summary">
+          <strong>5.0</strong>
+          <div>
+            <div class="review-summary-stars" aria-label="Five stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <small>4 Google reviews</small>
+          </div>
         </article>
-        <article class="review-card">
-          <div class="review-stars" aria-label="Google reviews">&#9733;</div>
-          <blockquote>Explore comments about local knowledge and private tours.</blockquote>
-          <div class="review-name"><span class="review-avatar">G</span><span><b>Guest experiences</b><small>Cape Town and beyond</small></span></div>
+        <article class="review-card featured">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>“Ashley was an awesome tour guide in Cape Town. He was informative, patient and covered lots of landmarks and tour sites in a short time. We had less than 3 full days and saw a lot. He was exceptional. Very happy we found him. Definitely 5 stars deserved.”</blockquote>
+          <div class="review-name"><span class="review-avatar">J</span><span><b>Jackie Thomas</b><small>Google review &middot; 4 reviews &middot; 4 photos &middot; 1 week ago</small></span></div>
         </article>
-        <article class="review-card">
-          <div class="review-stars" aria-label="Google reviews">&#9733;</div>
-          <blockquote>Leave your own review after your trip to help future travellers.</blockquote>
-          <div class="review-name"><span class="review-avatar">G</span><span><b>Share feedback</b><small>Google Business Profile</small></span></div>
-        </article>
+        <iframe class="review-map" title="AC Tours Google reviews" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?cid=5796070687257065670&amp;output=embed"></iframe>
       </div>
       <div class="review-foot">
         <p>Find AC Tours on Google to read guest reviews and leave your own.</p>
