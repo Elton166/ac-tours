@@ -276,6 +276,28 @@ section { padding-block: 72px; }
 .why-item h3 { font-size: 1.2rem; font-weight: 700; }
 .why-item p { color: var(--muted); font-size: 15px; }
 
+/* Guest reviews */
+.reviews { background: var(--navy); color: #fff; overflow: hidden; }
+.reviews .head { max-width: 52ch; }
+.reviews .head p { color: #c3d2ec; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.review-card {
+  background: var(--surface); color: var(--fg); border: 1px solid rgba(255,255,255,.12); border-radius: 22px;
+  padding: 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  box-shadow: 0 18px 44px rgba(0,0,0,.18);
+}
+.review-stars { color: #f9a825; letter-spacing: 3px; font-size: 20px; line-height: 1; }
+.review-card blockquote { margin: 0; font-family: var(--font-display); font-size: 1.12rem; font-weight: 600; line-height: 1.45; }
+.review-card .review-name { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+.review-avatar {
+  width: 40px; height: 40px; flex: 0 0 40px; border-radius: 50%; background: var(--orange); color: var(--navy);
+  display: grid; place-items: center; font-family: var(--font-display); font-weight: 800;
+}
+.review-name span { display: block; }
+.review-name small { display: block; color: var(--muted); font-size: 12.5px; }
+.review-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
+.review-foot p { color: #c3d2ec; }
+
 /* Steps */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; counter-reset: s; padding: 0; margin: 0; list-style: none; }
 .steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; min-width: 0; }
@@ -389,6 +411,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
 @media (max-width: 860px) {
   .hero-center { padding-block: 32px 92px; }
   .enq-grid { grid-template-columns: 1fr; gap: 32px; }
+  .reviews-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .ashley-stats div { padding: 12px 6px; }
   .ashley-stats b { font-size: .92rem; overflow-wrap: normal; }
@@ -424,6 +447,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#home" data-go="home">Home</a>
       <a href="#tours" data-go="tours">Tours</a>
+      <a href="#reviews" data-go="reviews">Reviews</a>
       <a href="#gallery" data-go="gallery">Gallery</a>
       <a href="#about" data-go="about">About</a>
       <a class="btn small" href="#contact" data-go="contact">Contact us</a>
@@ -477,6 +501,37 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
         <li><h3>Get your quote</h3><p>We reply with a price, the route and the pickup time, and adjust it until it suits you.</p></li>
         <li><h3>Travel</h3><p>Your driver or guide meets you at the agreed time. You enjoy the day, we handle the rest.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="head">
+        <span class="tag">Guest reviews</span>
+        <h2>See feedback from AC Tours guests</h2>
+        <p>Read verified guest feedback on Google before planning your private Cape Town journey.</p>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div class="review-stars" aria-label="Google reviews">&#9733;</div>
+          <blockquote>Read reviews from guests who travelled with AC Tours.</blockquote>
+          <div class="review-name"><span class="review-avatar">G</span><span><b>Google reviews</b><small>Verified public feedback</small></span></div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="Google reviews">&#9733;</div>
+          <blockquote>Explore comments about local knowledge and private tours.</blockquote>
+          <div class="review-name"><span class="review-avatar">G</span><span><b>Guest experiences</b><small>Cape Town and beyond</small></span></div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="Google reviews">&#9733;</div>
+          <blockquote>Leave your own review after your trip to help future travellers.</blockquote>
+          <div class="review-name"><span class="review-avatar">G</span><span><b>Share feedback</b><small>Google Business Profile</small></span></div>
+        </article>
+      </div>
+      <div class="review-foot">
+        <p>Find AC Tours on Google to read guest reviews and leave your own.</p>
+        <a class="btn orange" id="reviewGoogle" href="#contact" target="_blank" rel="noopener noreferrer">Read reviews on Google</a>
+      </div>
     </div>
   </section>
 
@@ -682,7 +737,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
 <footer>
   <div class="wrap foot">
     <a class="brand" href="#home" data-go="home" aria-label="AC Tours home"><img src="img/ac-logo.png" alt="AC Tours" width="520" height="403"></a>
-    <nav aria-label="Footer"><a href="#home" data-go="home">Home</a><a href="#tours" data-go="tours">Tours</a><a href="#gallery" data-go="gallery">Gallery</a><a href="#about" data-go="about">About</a><a href="#contact" data-go="contact">Contact us</a><a id="fCall" href="#contact">Call 073 555 4271</a><a id="fWa" href="#contact" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="fEmail" href="mailto:actours25@gmail.com">Email</a><a id="fGoogle" href="#contact" target="_blank" rel="noopener noreferrer">Google</a><a id="fTiktok" href="#contact" target="_blank" rel="noopener noreferrer">TikTok</a></nav>
+    <nav aria-label="Footer"><a href="#home" data-go="home">Home</a><a href="#tours" data-go="tours">Tours</a><a href="#reviews" data-go="reviews">Reviews</a><a href="#gallery" data-go="gallery">Gallery</a><a href="#about" data-go="about">About</a><a href="#contact" data-go="contact">Contact us</a><a id="fCall" href="#contact">Call 073 555 4271</a><a id="fWa" href="#contact" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="fEmail" href="mailto:actours25@gmail.com">Email</a><a id="fGoogle" href="#contact" target="_blank" rel="noopener noreferrer">Google</a><a id="fTiktok" href="#contact" target="_blank" rel="noopener noreferrer">TikTok</a></nav>
     <span>&copy; 2026 AC Tours. All rights reserved.</span>
   </div>
 </footer>
@@ -935,6 +990,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
   document.getElementById("emailQrLink").href = "mailto:" + CFG.email;
   document.getElementById("fEmail").href = "mailto:" + CFG.email;
   document.getElementById("cGoogle").href = CFG.google;
+  document.getElementById("reviewGoogle").href = CFG.google;
   document.getElementById("cTiktok").href = CFG.tiktok;
   document.getElementById("fTiktok").href = CFG.tiktok;
   document.getElementById("fCall").href = "tel:" + CFG.tel;
@@ -1141,7 +1197,7 @@ footer { background: #010f21; color: #b9c8e2; padding-block: 36px; font-size: 14
 
   // Pages: Home, Gallery, About and Contact us. "tours", "how" and "enquire" are spots inside those pages.
   var VIEWS = ["home", "gallery", "about", "contact"];
-  var ALIAS = { tours: "home", how: "home", enquire: "contact" };
+  var ALIAS = { tours: "home", how: "home", reviews: "home", enquire: "contact" };
   var lastName = null;
   function hashName() { return (location.hash || "").replace(/^#/, ""); }
   function showView(name) {
